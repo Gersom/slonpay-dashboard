@@ -5,13 +5,14 @@ import {
   Flex,
   Td,
   Text,
+  Progress,
   Tr,
   useColorModeValue,
 } from "@chakra-ui/react";
 import React from "react";
 
 function TablesTableRow(props) {
-  const { logo, name, email, subdomain, domain, status, date } = props;
+  const { logo, name, email, subdomain, domain, status, date, progression } = props;
   const textColor = useColorModeValue("gray.700", "white");
   const bgStatus = useColorModeValue("gray.400", "#1a202c");
   const colorStatus = useColorModeValue("white", "gray.400");
@@ -55,16 +56,32 @@ function TablesTableRow(props) {
           p="3px 10px"
           borderRadius="8px"
         >
-          {status}
+          {status === "Online" ? 'Completado' : 'En proceso'}
         </Badge>
       </Td>
+      {/* <Td>
+        <Flex direction="column">
+          <Text
+            fontSize="md"
+            color="teal.300"
+            fontWeight="bold"
+            pb=".2rem"
+          >{`${progression}%`}</Text>
+          <Progress
+            colorscheme={progression === 100 ? "teal" : "cyan"}
+            size="xs"
+            value={progression}
+            borderRadius="15px"
+          />
+        </Flex>
+      </Td> */}
       <Td>
         <Text fontSize="md" color={textColor} fontWeight="bold" pb=".5rem">
           {date}
         </Text>
       </Td>
       <Td>
-        <Button p="0px" bg="transparent" variant="no-hover">
+        <Button bg="transparent">
           <Text
             fontSize="md"
             color="gray.400"

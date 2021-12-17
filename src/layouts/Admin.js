@@ -83,7 +83,7 @@ export default function Dashboard(props) {
           <Route
             path={prop.layout + prop.path}
             component={prop.component}
-            key={key}
+            key={'asd' + key}
           />
         );
       } else {
@@ -100,6 +100,7 @@ export default function Dashboard(props) {
         routes={routes}
         logoText={"DASHBOARD SLONPAY"}
         display="none"
+        key='sidebar12'
         sidebarVariant={sidebarVariant}
         {...rest}
       />

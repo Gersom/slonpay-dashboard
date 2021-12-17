@@ -36,9 +36,9 @@ function Tables() {
                 <Th pl="0px" color="gray.400">
                   Author
                 </Th>
-                <Th color="gray.400">Function</Th>
-                <Th color="gray.400">Status</Th>
-                <Th color="gray.400">Employed</Th>
+                <Th color="gray.400">Monto</Th>
+                <Th color="gray.400">Estado</Th>
+                <Th color="gray.400">Fecha</Th>
                 <Th></Th>
               </Tr>
             </Thead>
@@ -46,6 +46,7 @@ function Tables() {
               {tablesTableData.map((row) => {
                 return (
                   <TablesTableRow
+                    key={'Tables' + row.name}
                     name={row.name}
                     logo={row.logo}
                     email={row.email}
@@ -53,6 +54,7 @@ function Tables() {
                     domain={row.domain}
                     status={row.status}
                     date={row.date}
+                    progression={row.progression}
                   />
                 );
               })}
@@ -88,6 +90,7 @@ function Tables() {
               {tablesProjectData.map((row) => {
                 return (
                   <TablesProjectRow
+                    key={'TablesProjectRow' + row.name}
                     name={row.name}
                     logo={row.logo}
                     status={row.status}

@@ -74,6 +74,7 @@ function Sidebar(props) {
         return (
           <>
             <Text
+              key={'createLinksCategory' + prop.name}
               color={activeColor}
               fontWeight="bold"
               mb={{
@@ -98,7 +99,7 @@ function Sidebar(props) {
         return null
       }
       return (
-        <NavLink to={prop.layout + prop.path}>
+        <NavLink to={prop.layout + prop.path} key={'createLinksDefault' + prop.name}>
           {activeRoute(prop.layout + prop.path) === "active" ? (
             <Button
               boxSize="initial"
@@ -269,7 +270,7 @@ function Sidebar(props) {
           <Stack direction="column" mb="40px">
             <Box>
               {links}
-              <NavLink to='/auth/signin'>
+              <NavLink to='/auth/signin' key='Navlink1645h'>
                 <Button
                   boxSize="initial"
                   justifyContent="flex-start"
@@ -358,6 +359,7 @@ export function SidebarResponsive(props) {
         return (
           <>
             <Text
+              key={'createLinksText' + prop.name}
               color={activeColor}
               fontWeight="bold"
               mb={{
@@ -379,7 +381,7 @@ export function SidebarResponsive(props) {
         );
       }
       return (
-        <NavLink to={prop.layout + prop.path}>
+        <NavLink to={prop.layout + prop.path} key={'createLinksDefault' + prop.name}>
           {activeRoute(prop.layout + prop.path) === "active" ? (
             <Button
               boxSize="initial"
@@ -532,7 +534,7 @@ export function SidebarResponsive(props) {
         w="18px"
         h="18px"
         ref={btnRef}
-        colorScheme="teal"
+        colorscheme="teal"
         onClick={onOpen}
       />
       <Drawer
@@ -563,7 +565,7 @@ export function SidebarResponsive(props) {
               <Stack direction="column" mb="40px">
                 <Box>
                   {links}
-                  <NavLink to='/auth/signin'>
+                  <NavLink to='/auth/signin' key={'createLinksDefault123456'}>
                     <Button
                       boxSize="initial"
                       justifyContent="flex-start"
