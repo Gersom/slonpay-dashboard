@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // Chakra imports
 import {
   Flex,
@@ -19,7 +19,12 @@ import TablesTableRow from "components/Tables/TablesTableRow";
 import { tablesProjectData, tablesTableData } from "variables/general";
 
 function Tables() {
+  const [tableData, setTableData] = useState(tablesTableData);
   const textColor = useColorModeValue("gray.700", "white");
+
+  const changeTableData = (newValue) => {
+    alert('funciona')
+  }
 
   return (
     <Flex direction="column" pt={{ base: "120px", md: "75px" }}>
@@ -43,7 +48,7 @@ function Tables() {
               </Tr>
             </Thead>
             <Tbody>
-              {tablesTableData.map((row) => {
+              {tableData.map((row) => {
                 return (
                   <TablesTableRow
                     key={'Tables' + row.name}
@@ -55,6 +60,7 @@ function Tables() {
                     status={row.status}
                     date={row.date}
                     progression={row.progression}
+                    changeTableData={changeTableData}
                   />
                 );
               })}

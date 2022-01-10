@@ -22,7 +22,7 @@ import {
 import React from "react";
 
 function TablesTableRow(props) {
-  const { logo, name, email, subdomain, domain, status, date, progression } = props;
+  const { logo, name, email, subdomain, domain, status, date, progression, changeTableData } = props;
   const textColor = useColorModeValue("gray.700", "white");
   const bgStatus = useColorModeValue("gray.400", "#1a202c");
   const colorStatus = useColorModeValue("white", "gray.400");
@@ -30,7 +30,8 @@ function TablesTableRow(props) {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const cancelRef = React.useRef()
 
-  const completeRow = () => {
+  const completeRow = (event) => {
+    changeTableData(event.target.value)
     onClose()
   }
 
@@ -203,7 +204,7 @@ function TablesTableRow(props) {
               >
                 {status ? 'Completado' : 'En proceso'}
               </Badge> */}
-              <Select value={status}>
+              <Select value={status} onChange={completeRow}>
                 <option value={0}>En proceso</option>
                 <option value={1}>Cancelado</option>
                 <option value={2}>Completado</option>
@@ -216,11 +217,11 @@ function TablesTableRow(props) {
           <Textarea placeholder='Descripción...' />
         </AlertDialogBody>
         <AlertDialogFooter>
-          <Button ref={cancelRef} onClick={completeRow}>
+          {/* <Button ref={cancelRef} onClick={completeRow}>
             {status == 0 ? 'Aceptar' : ''}
             {status == 1 ? 'Completar' : ''}
             {status == 2 ? 'Aceptar' : ''}
-          </Button>
+          </Button> */}
           <Button onClick={onClose} colorScheme='red' ml={3}>
             Cancelar
           </Button>
