@@ -15,6 +15,8 @@ import {
   Text,
   Progress,
   Tr,
+  Select,
+  Textarea,
   useColorModeValue,
 } from "@chakra-ui/react";
 import React from "react";
@@ -65,15 +67,39 @@ function TablesTableRow(props) {
         </Flex>
       </Td>
       <Td>
-        <Badge
-          bg={status ? "green.400" : bgStatus}
-          color={status ? "white" : colorStatus}
-          fontSize="16px"
-          p="3px 10px"
-          borderRadius="8px"
-        >
-          {status ? 'Completado' : 'En proceso'}
-        </Badge>
+        {status == 0 &&
+          <Badge
+            bg={bgStatus}
+            color={colorStatus}
+            fontSize="16px"
+            p="3px 10px"
+            borderRadius="8px"
+          >
+            {'En proceso'}
+          </Badge>
+        }
+        {status == 1 &&
+          <Badge
+            bg={"#e94949"}
+            color={"white"}
+            fontSize="16px"
+            p="3px 10px"
+            borderRadius="8px"
+          >
+            {'Cancelado'}
+          </Badge>
+        }
+        {status == 2 &&
+          <Badge
+            bg={"green.400"}
+            color={"white"}
+            fontSize="16px"
+            p="3px 10px"
+            borderRadius="8px"
+          >
+            {'Completado'}
+          </Badge>
+        }
       </Td>
       {/* <Td>
         <Flex direction="column">
@@ -168,7 +194,7 @@ function TablesTableRow(props) {
             <Td>Estado:</Td>
             <Text margin="0 15px 0 0"></Text>
             <Td>
-              <Badge
+              {/* <Badge
                 bg={status ? "green.400" : bgStatus}
                 color={status ? "white" : colorStatus}
                 fontSize="16px"
@@ -176,13 +202,24 @@ function TablesTableRow(props) {
                 borderRadius="8px"
               >
                 {status ? 'Completado' : 'En proceso'}
-              </Badge>
+              </Badge> */}
+              <Select value={status}>
+                <option value={0}>En proceso</option>
+                <option value={1}>Cancelado</option>
+                <option value={2}>Completado</option>
+              </Select>
             </Td>
           </Tr>
+          {/* <Text margin="0 0 15px 0"></Text> */}
+          
+          <Text margin="0 0 15px 0"></Text>
+          <Textarea placeholder='Descripción...' />
         </AlertDialogBody>
         <AlertDialogFooter>
           <Button ref={cancelRef} onClick={completeRow}>
-            {status ? 'Aceptar' : 'Completar'}
+            {status == 0 ? 'Aceptar' : ''}
+            {status == 1 ? 'Completar' : ''}
+            {status == 2 ? 'Aceptar' : ''}
           </Button>
           <Button onClick={onClose} colorScheme='red' ml={3}>
             Cancelar
