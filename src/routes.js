@@ -28,7 +28,7 @@ var dashRoutes = [
   },
   {
     path: "/operations",
-    name: "Operations",
+    name: "Operaciones",
     rtlName: "لوحة القيادة",
     icon: <StatsIcon color="inherit" />,
     component: Tables,
