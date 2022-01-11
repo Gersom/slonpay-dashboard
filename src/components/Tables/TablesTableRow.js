@@ -19,7 +19,7 @@ import {
   Textarea,
   useColorModeValue,
 } from "@chakra-ui/react";
-import React from "react";
+import React, {useState} from "react";
 
 function TablesTableRow(props) {
   const { logo, name, email, subdomain, domain, status, date, progression, changeTableData } = props;
@@ -27,11 +27,14 @@ function TablesTableRow(props) {
   const bgStatus = useColorModeValue("gray.400", "#1a202c");
   const colorStatus = useColorModeValue("white", "gray.400");
 
+  const [statusState, setStatusState] = useState(status);
+
   const { isOpen, onOpen, onClose } = useDisclosure()
   const cancelRef = React.useRef()
 
   const completeRow = (event) => {
-    changeTableData(event.target.value)
+    setStatusState(parseInt(event.target.value))
+    changeTableData(event.target.value, email)
     onClose()
   }
 
@@ -68,7 +71,7 @@ function TablesTableRow(props) {
         </Flex>
       </Td>
       <Td>
-        {status == 0 &&
+        {statusState == 0 &&
           <Badge
             bg={bgStatus}
             color={colorStatus}
@@ -79,7 +82,7 @@ function TablesTableRow(props) {
             {'En proceso'}
           </Badge>
         }
-        {status == 1 &&
+        {statusState == 1 &&
           <Badge
             bg={"#e94949"}
             color={"white"}
@@ -90,7 +93,7 @@ function TablesTableRow(props) {
             {'Cancelado'}
           </Badge>
         }
-        {status == 2 &&
+        {statusState == 2 &&
           <Badge
             bg={"green.400"}
             color={"white"}
@@ -204,7 +207,7 @@ function TablesTableRow(props) {
               >
                 {status ? 'Completado' : 'En proceso'}
               </Badge> */}
-              <Select value={status} onChange={completeRow}>
+              <Select value={statusState} onChange={completeRow}>
                 <option value={0}>En proceso</option>
                 <option value={1}>Cancelado</option>
                 <option value={2}>Completado</option>

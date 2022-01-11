@@ -8,6 +8,9 @@ import {
   Th,
   Thead,
   Tr,
+  Select,
+  Box,
+  Spacer,
   useColorModeValue,
 } from "@chakra-ui/react";
 // Custom components
@@ -19,21 +22,44 @@ import TablesTableRow from "components/Tables/TablesTableRow";
 import { tablesProjectData, tablesTableData } from "variables/general";
 
 function Tables() {
+
   const [tableData, setTableData] = useState(tablesTableData);
+  const [typeState, setTypeState] = useState(0);
   const textColor = useColorModeValue("gray.700", "white");
 
-  const changeTableData = (newValue) => {
-    alert('funciona')
+  const changeTableData = (newValue, email) => {
+    let temporalIndex = tableData.findIndex(value => value.email === email)
+    let temporal = tableData
+    temporal[temporalIndex].status = parseInt(newValue)
+    setTableData(temporal)
+  }
+
+  const changeBuyAndSell = (event) => {
+    setTypeState(event.target.value)
+    // Compra
   }
 
   return (
     <Flex direction="column" pt={{ base: "120px", md: "75px" }}>
       <Card overflowX={{ sm: "scroll", xl: "hidden" }}>
-        <CardHeader p="6px 0px 22px 0px">
-          <Text fontSize="xl" color={textColor} fontWeight="bold">
-            Authors Table
-          </Text>
-        </CardHeader>
+        
+        <Flex>
+          <Box>
+            <CardHeader p="6px 0px 22px 0px">
+              <Text fontSize="xl" color={textColor} fontWeight="bold">
+                Operaciones de :
+              </Text>
+            </CardHeader>
+          </Box>
+          <Box w='20px' />
+          <Box>
+            <Select value={typeState} onChange={(event) => changeBuyAndSell(event)}>
+              <option value={0}>Compra</option>
+              <option value={1}>Venta</option>
+            </Select>
+          </Box>
+        </Flex>
+        
         <CardBody>
           <Table variant="simple" color={textColor}>
             <Thead>
